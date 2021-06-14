@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>iNet.Stomp.Client</id>
+    <id>iNet.StompClient</id>
     <version>1.0.21</version>
     <authors>AmirHosseinKhademi</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -17,6 +17,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Debug\net5.0\iNet.Stomp.Client.dll" target="lib\net5.0\iNet.Stomp.Client.dll" />
+    <file src="C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Release\net5.0\iNet.Stomp.Client.dll" target="lib\net5.0\iNet.Stomp.Client.dll" />
   </files>
 </package>

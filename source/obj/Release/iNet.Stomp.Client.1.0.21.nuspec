@@ -5,10 +5,10 @@
     <version>1.0.21</version>
     <authors>AmirHosseinKhademi</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <projectUrl>https://github.com/Netina/iNet.Stomp.Client</projectUrl>
+    <projectUrl>https://github.com/mrmohande3/iNet</projectUrl>
     <description>Package Description</description>
     <tags>stomp</tags>
-    <repository url="https://github.com/Netina/iNet.Stomp.Client" />
+    <repository url="https://github.com/mrmohande3/iNet" />
     <dependencies>
       <group targetFramework="net5.0">
         <dependency id="Newtonsoft.Json" version="13.0.1" exclude="Build,Analyzers" />
@@ -17,6 +17,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Debug\net5.0\iNet.Stomp.Client.dll" target="lib\net5.0\iNet.Stomp.Client.dll" />
+    <file src="C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Release\net5.0\iNet.Stomp.Client.dll" target="lib\net5.0\iNet.Stomp.Client.dll" />
   </files>
 </package>

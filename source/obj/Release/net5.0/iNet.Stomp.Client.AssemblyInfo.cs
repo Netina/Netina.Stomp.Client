@@ -12,7 +12,7 @@ using System;
 using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("ViraNasirFanavar")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.21.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.21")]
 [assembly: System.Reflection.AssemblyProductAttribute("iNet.Stomp.Client")]

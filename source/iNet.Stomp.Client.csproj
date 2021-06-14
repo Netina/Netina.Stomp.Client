@@ -5,10 +5,13 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>AmirHosseinKhademi</Authors>
     <Company>ViraNasirFanavar</Company>
-    <PackageProjectUrl>https://github.com/mrmohande3/iNet</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/mrmohande3/iNet</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Netina/iNet.Stomp.Client</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Netina/iNet.Stomp.Client</RepositoryUrl>
     <PackageTags>stomp</PackageTags>
     <Version>1.0.21</Version>
+    <SignAssembly>false</SignAssembly>
+    <PackageId>iNet.Stomp.Client</PackageId>
+    <Product>iNet.Stomp.Client</Product>
   </PropertyGroup>
 
   <ItemGroup>
