@@ -1,6 +1,9 @@
 # iNet.Stomp.Client
 
 [![Build status](https://ci.appveyor.com/api/projects/status/166elreftg7pc62g?svg=true)](https://ci.appveyor.com/project/mrmohande3/inet-stomp-client)
+[![NuGet](https://img.shields.io/nuget/v/Netina.Stomp.Client.svg)](https://www.nuget.org/packages/Netina.Stomp.Client/)
+[![NuGet](https://img.shields.io/nuget/dt/Netina.Stomp.Client.svg)](https://www.nuget.org/packages/Netina.Stomp.Client/)
+[![GitHub issues](https://img.shields.io/github/issues/Netina/iNet.Stomp.Client.svg)](https://github.com/Netina/iNet.Stomp.Client/issues)
 
 .NET nuget package for connecting stomp server in client async
 
