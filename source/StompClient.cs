@@ -118,7 +118,7 @@ namespace iNet.Stomp.Client
         public async Task SubscribeAsync<T>(string topic, IDictionary<string, string> headers, EventHandler<T> handler)
         {
             if (StompState != StompConnectionState.Open)
-                Reconnect();
+                await Reconnect();
 
             headers.Add("destination", topic);
             headers.Add("id", $"sub-{_subscribers.Count}");
