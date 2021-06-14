@@ -1,3 +1,7 @@
+C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Release\net5.0\Netina.Stomp.Client.deps.json
+C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Release\net5.0\Netina.Stomp.Client.dll
+C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Release\net5.0\ref\Netina.Stomp.Client.dll
+C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Release\net5.0\Netina.Stomp.Client.pdb
 C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Release\net5.0\System.Reactive.dll
 C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Release\net5.0\System.Reactive.xml
 C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\obj\Release\net5.0\iNet.Stomp.Client.csprojAssemblyReference.cache
@@ -6,10 +10,6 @@ C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\obj\Release\net5.0\iNe
 C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\obj\Release\net5.0\iNet.Stomp.Client.AssemblyInfo.cs
 C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\obj\Release\net5.0\iNet.Stomp.Client.csproj.CoreCompileInputs.cache
 C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\obj\Release\net5.0\iNet.Stomp.Client.csproj.CopyComplete
-C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Release\net5.0\Netina.Stomp.Client.deps.json
-C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Release\net5.0\Netina.Stomp.Client.dll
-C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Release\net5.0\ref\Netina.Stomp.Client.dll
-C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Release\net5.0\Netina.Stomp.Client.pdb
 C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\obj\Release\net5.0\Netina.Stomp.Client.dll
 C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\obj\Release\net5.0\ref\Netina.Stomp.Client.dll
 C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\obj\Release\net5.0\Netina.Stomp.Client.pdb

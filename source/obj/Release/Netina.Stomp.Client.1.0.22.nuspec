@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Netina.Stomp.Client</id>
+    <version>1.0.22</version>
+    <authors>AmirHosseinKhademi</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <icon>NetinaLogo.jpg</icon>
+    <projectUrl>https://github.com/Netina/iNet.Stomp.Client</projectUrl>
+    <description>.NET nuget package for connecting stomp server in client async</description>
+    <tags>stomp , .net , c# , stomp client</tags>
+    <repository url="https://github.com/Netina/iNet.Stomp.Client" />
+    <dependencies>
+      <group targetFramework=".NETCoreApp3.1">
+        <dependency id="Newtonsoft.Json" version="13.0.1" exclude="Build,Analyzers" />
+        <dependency id="Websocket.Client" version="4.3.32" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net5.0">
+        <dependency id="Newtonsoft.Json" version="13.0.1" exclude="Build,Analyzers" />
+        <dependency id="Websocket.Client" version="4.3.32" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Newtonsoft.Json" version="13.0.1" exclude="Build,Analyzers" />
+        <dependency id="Websocket.Client" version="4.3.32" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Release\net5.0\Netina.Stomp.Client.dll" target="lib\net5.0\Netina.Stomp.Client.dll" />
+    <file src="C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Release\netcoreapp3.1\Netina.Stomp.Client.dll" target="lib\netcoreapp3.1\Netina.Stomp.Client.dll" />
+    <file src="C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Release\netstandard2.0\Netina.Stomp.Client.dll" target="lib\netstandard2.0\Netina.Stomp.Client.dll" />
+    <file src="C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\NetinaLogo.jpg" target="NetinaLogo.jpg" />
+  </files>
+</package>

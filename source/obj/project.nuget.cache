@@ -1,12 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "G+SvIlamAJ/+1Tta1kgiRbRoNMOV2Rn+hCfDDubtLv/3+52pOj1nlH+CFAZnYmrJUvwaZRlVUAb3rvnw3qhmGg==",
+  "dgSpecHash": "oqSm1BtEdxocpnZvclS49QV/V63hEyELRJX+Ir4/vizC4bwkMFnlUmXL+wevInzMwBqWg1164rlYudwEptrjrw==",
   "success": true,
   "projectFilePath": "C:\\Users\\avvam\\source\\repos\\iNet\\iNet.Stomp.Client\\source\\iNet.Stomp.Client.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\avvam\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\avvam\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\avvam\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
     "C:\\Users\\avvam\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\avvam\\.nuget\\packages\\system.reactive\\4.3.2\\system.reactive.4.3.2.nupkg.sha512",
+    "C:\\Users\\avvam\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512",
+    "C:\\Users\\avvam\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
+    "C:\\Users\\avvam\\.nuget\\packages\\system.runtime.interopservices.windowsruntime\\4.3.0\\system.runtime.interopservices.windowsruntime.4.3.0.nupkg.sha512",
     "C:\\Users\\avvam\\.nuget\\packages\\system.threading.channels\\4.7.0\\system.threading.channels.4.7.0.nupkg.sha512",
+    "C:\\Users\\avvam\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.3\\system.threading.tasks.extensions.4.5.3.nupkg.sha512",
     "C:\\Users\\avvam\\.nuget\\packages\\websocket.client\\4.3.32\\websocket.client.4.3.32.nupkg.sha512"
   ],
   "logs": []

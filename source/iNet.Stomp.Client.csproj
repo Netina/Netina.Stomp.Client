@@ -1,22 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netcoreapp3.1;net5.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>AmirHosseinKhademi</Authors>
     <Company>ViraNasirFanavar</Company>
     <PackageProjectUrl>https://github.com/Netina/iNet.Stomp.Client</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Netina/iNet.Stomp.Client</RepositoryUrl>
-    <PackageTags>stomp</PackageTags>
-    <Version>1.0.21.1</Version>
+    <PackageTags>stomp , .net , c# , stomp client</PackageTags>
+    <Version>1.0.22.0</Version>
     <SignAssembly>false</SignAssembly>
     <PackageId>Netina.Stomp.Client</PackageId>
     <Product>Netina.Stomp.Client</Product>
     <AssemblyName>Netina.Stomp.Client</AssemblyName>
     <RootNamespace>Netina.Stomp.Client</RootNamespace>
     <PackageIcon>NetinaLogo.jpg</PackageIcon>
-    <AssemblyVersion>1.0.21.1</AssemblyVersion>
-    <FileVersion>1.0.21.1</FileVersion>
+    <AssemblyVersion>1.0.22.0</AssemblyVersion>
+    <FileVersion>1.0.22.0</FileVersion>
+    <Description>.NET nuget package for connecting stomp server in client async</Description>
   </PropertyGroup>
 
   <ItemGroup>
