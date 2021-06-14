@@ -1,4 +1,4 @@
-# iNet.Stomp.Client
+# Netina.Stomp.Client
 
 [![Build status](https://ci.appveyor.com/api/projects/status/166elreftg7pc62g?svg=true)](https://ci.appveyor.com/project/mrmohande3/inet-stomp-client)
 [![NuGet](https://img.shields.io/nuget/v/Netina.Stomp.Client.svg)](https://www.nuget.org/packages/Netina.Stomp.Client/)
