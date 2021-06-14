@@ -10,8 +10,10 @@
     <PackageTags>stomp</PackageTags>
     <Version>1.0.21</Version>
     <SignAssembly>false</SignAssembly>
-    <PackageId>iNet.Stomp.Client</PackageId>
-    <Product>iNet.Stomp.Client</Product>
+    <PackageId>Netina.Stomp.Client</PackageId>
+    <Product>Netina.Stomp.Client</Product>
+    <AssemblyName>Netina.Stomp.Client</AssemblyName>
+    <RootNamespace>Netina.Stomp.Client</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

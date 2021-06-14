@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace iNet.Stomp.Client.Messages
+namespace Netina.Stomp.Client.Messages
 {
     public class StompMessageSerializer
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace iNet.Stomp.Client
+namespace Netina.Stomp.Client
 {
     public class Subscriber
     {

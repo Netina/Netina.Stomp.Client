@@ -15,8 +15,8 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.21.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.21")]
-[assembly: System.Reflection.AssemblyProductAttribute("iNet.Stomp.Client")]
-[assembly: System.Reflection.AssemblyTitleAttribute("iNet.Stomp.Client")]
+[assembly: System.Reflection.AssemblyProductAttribute("Netina.Stomp.Client")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Netina.Stomp.Client")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.21.0")]
 [assembly: System.Reflection.AssemblyMetadataAttribute("RepositoryUrl", "https://github.com/Netina/iNet.Stomp.Client")]
 

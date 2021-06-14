@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using iNet.Stomp.Client.Utils;
+using Netina.Stomp.Client.Utils;
 using Websocket.Client;
 using Websocket.Client.Models;
 
-namespace iNet.Stomp.Client.Interfaces
+namespace Netina.Stomp.Client.Interfaces
 {
     public interface IStompClient : IDisposable
     {

@@ -4,14 +4,14 @@ using System.Linq;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading.Tasks;
-using iNet.Stomp.Client.Interfaces;
-using iNet.Stomp.Client.Messages;
-using iNet.Stomp.Client.Utils;
+using Netina.Stomp.Client.Interfaces;
+using Netina.Stomp.Client.Messages;
+using Netina.Stomp.Client.Utils;
 using Newtonsoft.Json;
 using Websocket.Client;
 using Websocket.Client.Models;
 
-namespace iNet.Stomp.Client
+namespace Netina.Stomp.Client
 {
     public class StompClient : IStompClient
     {

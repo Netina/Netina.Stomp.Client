@@ -154,7 +154,7 @@
     "version": "1.0.21",
     "restore": {
       "projectUniqueName": "C:\\Users\\avvam\\source\\repos\\iNet\\iNet.Stomp.Client\\source\\iNet.Stomp.Client.csproj",
-      "projectName": "iNet.Stomp.Client",
+      "projectName": "Netina.Stomp.Client",
       "projectPath": "C:\\Users\\avvam\\source\\repos\\iNet\\iNet.Stomp.Client\\source\\iNet.Stomp.Client.csproj",
       "packagesPath": "C:\\Users\\avvam\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\avvam\\source\\repos\\iNet\\iNet.Stomp.Client\\source\\obj\\",

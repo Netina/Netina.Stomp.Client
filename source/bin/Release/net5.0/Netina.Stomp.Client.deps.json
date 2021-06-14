@@ -6,14 +6,14 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "iNet.Stomp.Client/1.0.21": {
+      "Netina.Stomp.Client/1.0.21": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
           "Websocket.Client": "4.3.32",
           "System.Reactive.Reference": "4.3.0.0"
         },
         "runtime": {
-          "iNet.Stomp.Client.dll": {}
+          "Netina.Stomp.Client.dll": {}
         }
       },
       "Newtonsoft.Json/13.0.1": {
@@ -49,7 +49,7 @@
     }
   },
   "libraries": {
-    "iNet.Stomp.Client/1.0.21": {
+    "Netina.Stomp.Client/1.0.21": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
