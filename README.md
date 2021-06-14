@@ -5,7 +5,7 @@
 .NET nuget package for connecting stomp server in client async
 
 ### Usage
-    Install-Package iNet.Stomp.Client
+    Install-Package Netina.Stomp.Client
     
 ### 1.Add stomp url and connect
 ```C#
