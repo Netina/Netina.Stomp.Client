@@ -2,7 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/166elreftg7pc62g?svg=true)](https://ci.appveyor.com/project/mrmohande3/inet-stomp-client)
 
-nuget package for .net to connect stomp server 
+.NET nuget package for connecting stomp server in client async
 
 ### Usage
     Install-Package iNet.Stomp.Client
@@ -25,6 +25,6 @@ for subscribing use SubscribeAsync method . this method is generic and get subsc
 
 ### 3.Send
 ```C#
-await client.SendAsync("boy", "notic", new Dictionary<string, string>());
+await client.SendAsync(body, "notic", new Dictionary<string, string>());
 ```
 for sending use SendAsync method , this method get body object and convert this to json for sending and url method in server and header dictionary 
