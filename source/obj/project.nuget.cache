@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "giWbLjjffLCj92u5eM1KYRGkcIgm3qUQ6lVOAudxOgkrkZRJ5rYOK1sf+sOLxEbepP2OLAW3aADD4K1V9Nfbvg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\avvam\\source\\repos\\iNet\\iNet.Stomp.Client\\source\\iNet.Stomp.Client.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\avvam\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\avvam\\.nuget\\packages\\system.reactive\\4.3.2\\system.reactive.4.3.2.nupkg.sha512",
+    "C:\\Users\\avvam\\.nuget\\packages\\system.threading.channels\\4.7.0\\system.threading.channels.4.7.0.nupkg.sha512",
+    "C:\\Users\\avvam\\.nuget\\packages\\websocket.client\\4.3.32\\websocket.client.4.3.32.nupkg.sha512"
+  ],
+  "logs": []
+}
