@@ -14,7 +14,7 @@
     <Product>Netina.Stomp.Client</Product>
     <AssemblyName>Netina.Stomp.Client</AssemblyName>
     <RootNamespace>Netina.Stomp.Client</RootNamespace>
-    <PackageIcon>netina.jpg</PackageIcon>
+    <PackageIcon>NetinaLogo.jpg</PackageIcon>
     <AssemblyVersion>1.0.21.1</AssemblyVersion>
     <FileVersion>1.0.21.1</FileVersion>
   </PropertyGroup>
@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\Resources\netina.jpg">
+    <None Include="..\NetinaLogo.jpg">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
