@@ -151,7 +151,7 @@
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
-    "version": "1.0.21",
+    "version": "1.0.21.1",
     "restore": {
       "projectUniqueName": "C:\\Users\\avvam\\source\\repos\\iNet\\iNet.Stomp.Client\\source\\iNet.Stomp.Client.csproj",
       "projectName": "Netina.Stomp.Client",

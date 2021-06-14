@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Netina.Stomp.Client</id>
-    <version>1.0.21</version>
+    <version>1.0.21.1</version>
     <authors>AmirHosseinKhademi</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <icon>netina.jpg</icon>

@@ -8,16 +8,26 @@
     <PackageProjectUrl>https://github.com/Netina/iNet.Stomp.Client</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Netina/iNet.Stomp.Client</RepositoryUrl>
     <PackageTags>stomp</PackageTags>
-    <Version>1.0.21</Version>
+    <Version>1.0.21.1</Version>
     <SignAssembly>false</SignAssembly>
     <PackageId>Netina.Stomp.Client</PackageId>
     <Product>Netina.Stomp.Client</Product>
     <AssemblyName>Netina.Stomp.Client</AssemblyName>
     <RootNamespace>Netina.Stomp.Client</RootNamespace>
+    <PackageIcon>netina.jpg</PackageIcon>
+    <AssemblyVersion>1.0.21.1</AssemblyVersion>
+    <FileVersion>1.0.21.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Websocket.Client" Version="4.3.32" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\Resources\netina.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>
