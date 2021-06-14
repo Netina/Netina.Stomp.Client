@@ -7,7 +7,7 @@ nuget package for .net to connect stomp server
 ### Usage
     Install-Package iNet.Stomp.Client
     
-####1.Add stomp url and connect
+###1.Add stomp url and connect
     IStompClient client = new StompClient("ws://xxxxx.xx");
     var headers = new Dictionary<string, string>();
     headers.Add("X-Authorization", "Bearer xxx");
