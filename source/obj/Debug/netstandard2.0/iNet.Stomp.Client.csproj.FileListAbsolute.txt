@@ -1,0 +1,10 @@
+C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Debug\netstandard2.0\Netina.Stomp.Client.deps.json
+C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Debug\netstandard2.0\Netina.Stomp.Client.dll
+C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\bin\Debug\netstandard2.0\Netina.Stomp.Client.pdb
+C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\obj\Debug\netstandard2.0\iNet.Stomp.Client.AssemblyInfoInputs.cache
+C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\obj\Debug\netstandard2.0\iNet.Stomp.Client.AssemblyInfo.cs
+C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\obj\Debug\netstandard2.0\iNet.Stomp.Client.csproj.CoreCompileInputs.cache
+C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\obj\Debug\netstandard2.0\Netina.Stomp.Client.dll
+C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\obj\Debug\netstandard2.0\Netina.Stomp.Client.pdb
+C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\obj\Debug\netstandard2.0\iNet.Stomp.Client.csproj.AssemblyReference.cache
+C:\Users\avvam\source\repos\iNet\iNet.Stomp.Client\source\obj\Debug\netstandard2.0\iNet.Stomp.Client.GeneratedMSBuildEditorConfig.editorconfig

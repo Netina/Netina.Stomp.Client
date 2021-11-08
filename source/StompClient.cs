@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.WebSockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Netina.Stomp.Client.Interfaces;
 using Netina.Stomp.Client.Messages;
@@ -33,12 +34,15 @@ namespace Netina.Stomp.Client
         /// <param name="url">Url of stomp websocket , start with wss or ws</param>
         /// <param name="reconnectEnable">Set reconnect enable of disable</param>
         /// <param name="stompVersion">Add stomp version in header for connecting , IF DONT SET VERSION HEADER SET 1.1,1.0 AUTOMATIC</param>
-        public StompClient(string url , bool reconnectEnable = true , string stompVersion = null)
+        /// <param name="reconnectTimeOut">Time range in ms, how long to wait before reconnecting if last reconnection failed.Set null to disable this feature.Default: NULL</param>
+        public StompClient(string url , bool reconnectEnable = true , string stompVersion = null , TimeSpan? reconnectTimeOut = null)
         {
             _socket = new WebsocketClient(new Uri(url));
+            _socket.ReconnectTimeout = reconnectTimeOut;
             _socket.IsReconnectionEnabled = reconnectEnable;
             _socket.MessageReceived.Subscribe(HandleMessage);
-            _socket.ErrorReconnectTimeout = TimeSpan.FromSeconds(30);
+            _socket.ErrorReconnectTimeout = TimeSpan.FromSeconds(2);
+            
             _socket.DisconnectionHappened.Subscribe(info =>
             {
                 StompState = StompConnectionState.Closed;
@@ -75,6 +79,7 @@ namespace Netina.Stomp.Client
                 {
                     _connectingHeaders.Add(header);
                 }
+                _connectingHeaders.Add("heart-beat","0,1000");
                 var connectMessage = new StompMessage(StompCommand.Connect, _connectingHeaders);
                 await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
                 StompState = StompConnectionState.Open;

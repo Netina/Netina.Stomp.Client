@@ -32,7 +32,7 @@
           "lib/netcoreapp3.0/System.Threading.Channels.dll": {}
         }
       },
-      "Websocket.Client/4.3.32": {
+      "Websocket.Client/4.3.38": {
         "type": "package",
         "dependencies": {
           "System.Reactive": "4.3.2",
@@ -157,7 +157,7 @@
           "lib/netstandard2.0/System.Threading.Tasks.Extensions.dll": {}
         }
       },
-      "Websocket.Client/4.3.32": {
+      "Websocket.Client/4.3.38": {
         "type": "package",
         "dependencies": {
           "System.Reactive": "4.3.2",
@@ -202,7 +202,7 @@
           "lib/netcoreapp3.0/System.Threading.Channels.dll": {}
         }
       },
-      "Websocket.Client/4.3.32": {
+      "Websocket.Client/4.3.38": {
         "type": "package",
         "dependencies": {
           "System.Reactive": "4.3.2",
@@ -664,10 +664,10 @@
         "version.txt"
       ]
     },
-    "Websocket.Client/4.3.32": {
-      "sha512": "6QPYsIBsM61gz/m311eZAfHoy0L4plKrlobP3cJnAcfZ6T+WCCexmFEVi9eIXnhtK7gyIPgXgoeJzP6ynA7Z+Q==",
+    "Websocket.Client/4.3.38": {
+      "sha512": "KkQj9wlcDsnlWszixEW7Zpt2NrXqHhcywAqsgkSjnQb//d7Lj+dIWsOSjKFxFmkF/fPeE8ZbG6VCLsvfuuhP4A==",
       "type": "package",
-      "path": "websocket.client/4.3.32",
+      "path": "websocket.client/4.3.38",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -676,7 +676,7 @@
         "lib/netstandard2.0/Websocket.Client.xml",
         "lib/netstandard2.1/Websocket.Client.dll",
         "lib/netstandard2.1/Websocket.Client.xml",
-        "websocket.client.4.3.32.nupkg.sha512",
+        "websocket.client.4.3.38.nupkg.sha512",
         "websocket.client.nuspec"
       ]
     }
@@ -684,16 +684,16 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Newtonsoft.Json >= 13.0.1",
-      "Websocket.Client >= 4.3.32"
+      "Websocket.Client >= 4.3.38"
     ],
     ".NETStandard,Version=v2.0": [
       "NETStandard.Library >= 2.0.3",
       "Newtonsoft.Json >= 13.0.1",
-      "Websocket.Client >= 4.3.32"
+      "Websocket.Client >= 4.3.38"
     ],
     "net5.0": [
       "Newtonsoft.Json >= 13.0.1",
-      "Websocket.Client >= 4.3.32"
+      "Websocket.Client >= 4.3.38"
     ]
   },
   "packageFolders": {
@@ -761,7 +761,7 @@
           },
           "Websocket.Client": {
             "target": "Package",
-            "version": "[4.3.32, )"
+            "version": "[4.3.38, )"
           }
         },
         "imports": [
@@ -779,7 +779,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       },
       "net5.0": {
         "targetAlias": "net5.0",
@@ -790,7 +790,7 @@
           },
           "Websocket.Client": {
             "target": "Package",
-            "version": "[4.3.32, )"
+            "version": "[4.3.38, )"
           }
         },
         "imports": [
@@ -808,7 +808,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       },
       "netstandard2.0": {
         "targetAlias": "netstandard2.0",
@@ -825,7 +825,7 @@
           },
           "Websocket.Client": {
             "target": "Package",
-            "version": "[4.3.32, )"
+            "version": "[4.3.38, )"
           }
         },
         "imports": [
@@ -838,7 +838,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
