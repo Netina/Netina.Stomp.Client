@@ -7,11 +7,11 @@
   "targets": {
     ".NETStandard,Version=v2.0": {},
     ".NETStandard,Version=v2.0/": {
-      "Netina.Stomp.Client/1.0.22.0": {
+      "Netina.Stomp.Client/2.0.3.0": {
         "dependencies": {
           "NETStandard.Library": "2.0.3",
           "Newtonsoft.Json": "13.0.1",
-          "Websocket.Client": "4.3.38"
+          "Websocket.Client": "4.4.43"
         },
         "runtime": {
           "Netina.Stomp.Client.dll": {}
@@ -91,22 +91,22 @@
           }
         }
       },
-      "Websocket.Client/4.3.38": {
+      "Websocket.Client/4.4.43": {
         "dependencies": {
           "System.Reactive": "4.3.2",
           "System.Threading.Channels": "4.7.0"
         },
         "runtime": {
           "lib/netstandard2.0/Websocket.Client.dll": {
-            "assemblyVersion": "4.3.0.0",
-            "fileVersion": "4.3.0.0"
+            "assemblyVersion": "4.4.0.0",
+            "fileVersion": "4.4.0.0"
           }
         }
       }
     }
   },
   "libraries": {
-    "Netina.Stomp.Client/1.0.22.0": {
+    "Netina.Stomp.Client/2.0.3.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -181,12 +181,12 @@
       "path": "system.threading.tasks.extensions/4.5.3",
       "hashPath": "system.threading.tasks.extensions.4.5.3.nupkg.sha512"
     },
-    "Websocket.Client/4.3.38": {
+    "Websocket.Client/4.4.43": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-KkQj9wlcDsnlWszixEW7Zpt2NrXqHhcywAqsgkSjnQb//d7Lj+dIWsOSjKFxFmkF/fPeE8ZbG6VCLsvfuuhP4A==",
-      "path": "websocket.client/4.3.38",
-      "hashPath": "websocket.client.4.3.38.nupkg.sha512"
+      "sha512": "sha512-h0sS4zsnXrVkYyMYDaRc0k/oV54uXXBlN/HOHAK5d/RWleLTmWS6bxtt0l3D5Q2rgtfLinkHLdf4sOqdrxZ0NA==",
+      "path": "websocket.client/4.4.43",
+      "hashPath": "websocket.client.4.4.43.nupkg.sha512"
     }
   }
 }

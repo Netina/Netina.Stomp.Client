@@ -32,7 +32,7 @@
           "lib/netcoreapp3.0/System.Threading.Channels.dll": {}
         }
       },
-      "Websocket.Client/4.3.38": {
+      "Websocket.Client/4.4.43": {
         "type": "package",
         "dependencies": {
           "System.Reactive": "4.3.2",
@@ -157,7 +157,7 @@
           "lib/netstandard2.0/System.Threading.Tasks.Extensions.dll": {}
         }
       },
-      "Websocket.Client/4.3.38": {
+      "Websocket.Client/4.4.43": {
         "type": "package",
         "dependencies": {
           "System.Reactive": "4.3.2",
@@ -202,17 +202,62 @@
           "lib/netcoreapp3.0/System.Threading.Channels.dll": {}
         }
       },
-      "Websocket.Client/4.3.38": {
+      "Websocket.Client/4.4.43": {
         "type": "package",
         "dependencies": {
           "System.Reactive": "4.3.2",
           "System.Threading.Channels": "4.7.0"
         },
         "compile": {
-          "lib/netstandard2.1/Websocket.Client.dll": {}
+          "lib/net5.0/Websocket.Client.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.1/Websocket.Client.dll": {}
+          "lib/net5.0/Websocket.Client.dll": {}
+        }
+      }
+    },
+    "net6.0": {
+      "Newtonsoft.Json/13.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "System.Reactive/4.3.2": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/_._": {}
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.0/System.Reactive.targets": {}
+        }
+      },
+      "System.Threading.Channels/4.7.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/System.Threading.Channels.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/System.Threading.Channels.dll": {}
+        }
+      },
+      "Websocket.Client/4.4.43": {
+        "type": "package",
+        "dependencies": {
+          "System.Reactive": "4.3.2",
+          "System.Threading.Channels": "4.7.0"
+        },
+        "compile": {
+          "lib/net6.0/Websocket.Client.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Websocket.Client.dll": {}
         }
       }
     }
@@ -664,19 +709,23 @@
         "version.txt"
       ]
     },
-    "Websocket.Client/4.3.38": {
-      "sha512": "KkQj9wlcDsnlWszixEW7Zpt2NrXqHhcywAqsgkSjnQb//d7Lj+dIWsOSjKFxFmkF/fPeE8ZbG6VCLsvfuuhP4A==",
+    "Websocket.Client/4.4.43": {
+      "sha512": "h0sS4zsnXrVkYyMYDaRc0k/oV54uXXBlN/HOHAK5d/RWleLTmWS6bxtt0l3D5Q2rgtfLinkHLdf4sOqdrxZ0NA==",
       "type": "package",
-      "path": "websocket.client/4.3.38",
+      "path": "websocket.client/4.4.43",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "icon.png",
+        "lib/net5.0/Websocket.Client.dll",
+        "lib/net5.0/Websocket.Client.xml",
+        "lib/net6.0/Websocket.Client.dll",
+        "lib/net6.0/Websocket.Client.xml",
         "lib/netstandard2.0/Websocket.Client.dll",
         "lib/netstandard2.0/Websocket.Client.xml",
         "lib/netstandard2.1/Websocket.Client.dll",
         "lib/netstandard2.1/Websocket.Client.xml",
-        "websocket.client.4.3.38.nupkg.sha512",
+        "websocket.client.4.4.43.nupkg.sha512",
         "websocket.client.nuspec"
       ]
     }
@@ -684,25 +733,28 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Newtonsoft.Json >= 13.0.1",
-      "Websocket.Client >= 4.3.38"
+      "Websocket.Client >= 4.4.43"
     ],
     ".NETStandard,Version=v2.0": [
       "NETStandard.Library >= 2.0.3",
       "Newtonsoft.Json >= 13.0.1",
-      "Websocket.Client >= 4.3.38"
+      "Websocket.Client >= 4.4.43"
     ],
     "net5.0": [
       "Newtonsoft.Json >= 13.0.1",
-      "Websocket.Client >= 4.3.38"
+      "Websocket.Client >= 4.4.43"
+    ],
+    "net6.0": [
+      "Newtonsoft.Json >= 13.0.1",
+      "Websocket.Client >= 4.4.43"
     ]
   },
   "packageFolders": {
     "C:\\Users\\avvam\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.0.22",
+    "version": "2.0.3.1",
     "restore": {
       "projectUniqueName": "C:\\Users\\avvam\\source\\repos\\iNet\\iNet.Stomp.Client\\source\\iNet.Stomp.Client.csproj",
       "projectName": "Netina.Stomp.Client",
@@ -712,23 +764,23 @@
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
         "C:\\Users\\avvam\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0",
+        "net6.0",
         "netcoreapp3.1",
         "netstandard2.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "F:\\NugetPackages": {},
+        "F:\\Plugins\\Syncfusion Essential Studio Enterprise for Xamarin 18.4.0.39\\18.4.0.39\\Xamarin\\nuget": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -738,6 +790,10 @@
         },
         "net5.0": {
           "targetAlias": "net5.0",
+          "projectReferences": {}
+        },
+        "net6.0": {
+          "targetAlias": "net6.0",
           "projectReferences": {}
         },
         "netstandard2.0": {
@@ -761,7 +817,7 @@
           },
           "Websocket.Client": {
             "target": "Package",
-            "version": "[4.3.38, )"
+            "version": "[4.4.43, )"
           }
         },
         "imports": [
@@ -779,7 +835,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       },
       "net5.0": {
         "targetAlias": "net5.0",
@@ -790,7 +846,7 @@
           },
           "Websocket.Client": {
             "target": "Package",
-            "version": "[4.3.38, )"
+            "version": "[4.4.43, )"
           }
         },
         "imports": [
@@ -808,7 +864,36 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+      },
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "dependencies": {
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.1, )"
+          },
+          "Websocket.Client": {
+            "target": "Package",
+            "version": "[4.4.43, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       },
       "netstandard2.0": {
         "targetAlias": "netstandard2.0",
@@ -825,7 +910,7 @@
           },
           "Websocket.Client": {
             "target": "Package",
-            "version": "[4.3.38, )"
+            "version": "[4.4.43, )"
           }
         },
         "imports": [
@@ -838,7 +923,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

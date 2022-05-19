@@ -6,7 +6,8 @@
     <authors>AmirHosseinKhademi</authors>
     <icon>NetinaLogo.jpg</icon>
     <projectUrl>https://github.com/Netina/iNet.Stomp.Client</projectUrl>
-    <description>.NET nuget package for connecting stomp server in client async</description>
+    <description>.NET nuget package for connecting stomp server in client async
+For document and pakcage usage visit github page</description>
     <tags>stomp , .net , c# , stomp client</tags>
     <repository url="https://github.com/Netina/iNet.Stomp.Client" />
     <dependencies>

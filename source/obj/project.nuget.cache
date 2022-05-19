@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "77pnmQ8IRGNRqtqdF6EXUSybKMe6m7NgzLFBJ8M1bJA1A8fH0/GfohLNtAglbrSGVEXRpdkYMqyipWQzQXYyhA==",
+  "dgSpecHash": "9l54fsTXaFES3ELODkPhd0sBpXUViHa5VM03BTD1gxVwTFNaOClOxXzDrGyw08NuaNnJi1/1PDlL9JE7F9dbXw==",
   "success": true,
   "projectFilePath": "C:\\Users\\avvam\\source\\repos\\iNet\\iNet.Stomp.Client\\source\\iNet.Stomp.Client.csproj",
   "expectedPackageFiles": [
@@ -14,7 +14,7 @@
     "C:\\Users\\avvam\\.nuget\\packages\\system.runtime.interopservices.windowsruntime\\4.3.0\\system.runtime.interopservices.windowsruntime.4.3.0.nupkg.sha512",
     "C:\\Users\\avvam\\.nuget\\packages\\system.threading.channels\\4.7.0\\system.threading.channels.4.7.0.nupkg.sha512",
     "C:\\Users\\avvam\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.3\\system.threading.tasks.extensions.4.5.3.nupkg.sha512",
-    "C:\\Users\\avvam\\.nuget\\packages\\websocket.client\\4.3.38\\websocket.client.4.3.38.nupkg.sha512"
+    "C:\\Users\\avvam\\.nuget\\packages\\websocket.client\\4.4.43\\websocket.client.4.4.43.nupkg.sha512"
   ],
   "logs": []
 }

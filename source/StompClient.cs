@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.WebSockets;
 using System.Text;
@@ -20,7 +21,7 @@ namespace Netina.Stomp.Client
         public event EventHandler<DisconnectionInfo> OnClose;
         public event EventHandler<string> OnMessage;
         public event EventHandler<ReconnectionInfo> OnReconnect;
-        public event EventHandler<string> OnError; 
+        public event EventHandler<string> OnError;
 
         public StompConnectionState StompState { get; private set; } = StompConnectionState.Closed;
         private readonly WebsocketClient _socket;
@@ -35,14 +36,15 @@ namespace Netina.Stomp.Client
         /// <param name="reconnectEnable">Set reconnect enable of disable</param>
         /// <param name="stompVersion">Add stomp version in header for connecting , IF DONT SET VERSION HEADER SET 1.1,1.0 AUTOMATIC</param>
         /// <param name="reconnectTimeOut">Time range in ms, how long to wait before reconnecting if last reconnection failed.Set null to disable this feature.Default: NULL</param>
-        public StompClient(string url , bool reconnectEnable = true , string stompVersion = null , TimeSpan? reconnectTimeOut = null)
+        /// <param name="heartBeat">If you set heat-beat null is set 0,1000 automatic</param>
+        public StompClient(string url, bool reconnectEnable = true, string stompVersion = null, TimeSpan? reconnectTimeOut = null, string heartBeat = null)
         {
             _socket = new WebsocketClient(new Uri(url));
             _socket.ReconnectTimeout = reconnectTimeOut;
             _socket.IsReconnectionEnabled = reconnectEnable;
             _socket.MessageReceived.Subscribe(HandleMessage);
             _socket.ErrorReconnectTimeout = TimeSpan.FromSeconds(2);
-            
+
             _socket.DisconnectionHappened.Subscribe(info =>
             {
                 StompState = StompConnectionState.Closed;
@@ -52,24 +54,29 @@ namespace Netina.Stomp.Client
             });
             _socket.ReconnectionHappened.Subscribe(async info =>
             {
-                if(info.Type==ReconnectionType.Initial)
+                if (info.Type == ReconnectionType.Initial)
                     return;
                 OnReconnect?.Invoke(this, info);
                 StompState = StompConnectionState.Reconnecting;
                 await Reconnect();
             });
-            if(string.IsNullOrEmpty(stompVersion))
+            if (string.IsNullOrEmpty(stompVersion))
                 _connectingHeaders.Add("accept-version", "1.1,1.0");
             else
                 _connectingHeaders.Add("accept-version", stompVersion);
+            if (string.IsNullOrEmpty(stompVersion))
+                _connectingHeaders.Add("heart-beat", "0,1000");
+            else
+                _connectingHeaders.Add("heart-beat", heartBeat);
+
 
         }
-        
+
         public async Task ConnectAsync(IDictionary<string, string> headers)
         {
             try
             {
-                if(!_socket.IsRunning)
+                if (!_socket.IsRunning)
                     await _socket.Start();
                 if (!_socket.IsRunning)
                     throw new Exception("Connection is not open");
@@ -79,7 +86,6 @@ namespace Netina.Stomp.Client
                 {
                     _connectingHeaders.Add(header);
                 }
-                _connectingHeaders.Add("heart-beat","0,1000");
                 var connectMessage = new StompMessage(StompCommand.Connect, _connectingHeaders);
                 await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
                 StompState = StompConnectionState.Open;
@@ -150,15 +156,15 @@ namespace Netina.Stomp.Client
             ((IDisposable)_socket).Dispose();
             _subscribers.Clear();
         }
-        
+
         private void HandleMessage(ResponseMessage messageEventArgs)
         {
-            OnMessage?.Invoke(this,messageEventArgs.Text);
+            OnMessage?.Invoke(this, messageEventArgs.Text);
             var message = _stompSerializer.Deserialize(messageEventArgs.Text);
-            if(message.Command==StompCommand.Connected)
-                OnConnect?.Invoke(this,new EventArgs());
-            if(message.Command==StompCommand.Error)
-                OnError?.Invoke(this,message.Body);
+            if (message.Command == StompCommand.Connected)
+                OnConnect?.Invoke(this, new EventArgs());
+            if (message.Command == StompCommand.Error)
+                OnError?.Invoke(this, message.Body);
             if (message.Headers.ContainsKey("destination"))
             {
                 var sub = _subscribers[message.Headers["destination"]];

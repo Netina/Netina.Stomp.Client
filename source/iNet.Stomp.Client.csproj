@@ -1,34 +1,48 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netcoreapp3.1;net5.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>AmirHosseinKhademi</Authors>
     <Company>ViraNasirFanavar</Company>
     <PackageProjectUrl>https://github.com/Netina/iNet.Stomp.Client</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Netina/iNet.Stomp.Client</RepositoryUrl>
     <PackageTags>stomp , .net , c# , stomp client</PackageTags>
-    <Version>1.0.22.0</Version>
+    <Version>2.0.3.1</Version>
     <SignAssembly>false</SignAssembly>
     <PackageId>Netina.Stomp.Client</PackageId>
     <Product>Netina.Stomp.Client</Product>
     <AssemblyName>Netina.Stomp.Client</AssemblyName>
     <RootNamespace>Netina.Stomp.Client</RootNamespace>
     <PackageIcon>NetinaLogo.jpg</PackageIcon>
-    <AssemblyVersion>1.0.22.0</AssemblyVersion>
-    <FileVersion>1.0.22.0</FileVersion>
-    <Description>.NET nuget package for connecting stomp server in client async</Description>
+    <AssemblyVersion>2.0.3.1</AssemblyVersion>
+    <FileVersion>2.0.3.1</FileVersion>
+    <Description>.NET nuget package for connecting stomp server in client async
+For document and pakcage usage visit github page</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
+    <WarningLevel>5</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0|AnyCPU'">
+    <WarningLevel>5</WarningLevel>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Websocket.Client" Version="4.3.38" />
+    <PackageReference Include="Websocket.Client" Version="4.4.43" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="..\NetinaLogo.jpg">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 </Project>
