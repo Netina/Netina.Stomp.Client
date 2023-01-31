@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net.WebSockets;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using Netina.Stomp.Client.Interfaces;
 using Netina.Stomp.Client.Messages;
@@ -68,51 +64,36 @@ namespace Netina.Stomp.Client
                 _connectingHeaders.Add("heart-beat", "0,1000");
             else
                 _connectingHeaders.Add("heart-beat", heartBeat);
-
-
         }
 
         public async Task ConnectAsync(IDictionary<string, string> headers)
         {
-            try
+            if (!_socket.IsRunning)
+                await _socket.Start();
+            if (!_socket.IsRunning)
+                throw new Exception("Connection is not open");
+            if (StompState != StompConnectionState.Closed)
+                return;
+            foreach (var header in headers)
             {
-                if (!_socket.IsRunning)
-                    await _socket.Start();
-                if (!_socket.IsRunning)
-                    throw new Exception("Connection is not open");
-                if (StompState != StompConnectionState.Closed)
-                    return;
-                foreach (var header in headers)
-                {
-                    _connectingHeaders.Add(header);
-                }
-                var connectMessage = new StompMessage(StompCommand.Connect, _connectingHeaders);
-                await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
-                StompState = StompConnectionState.Open;
+                _connectingHeaders.Add(header);
             }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            var connectMessage = new StompMessage(StompCommand.Connect, _connectingHeaders);
+            await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
+            StompState = StompConnectionState.Open;
         }
 
         public async Task Reconnect()
         {
-            try
-            {
-                if (!_socket.IsRunning)
-                    await _socket.Start();
-                if (StompState == StompConnectionState.Open)
-                    return;
-                var connectMessage = new StompMessage(StompCommand.Connect, _connectingHeaders);
-                await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
-                StompState = StompConnectionState.Open;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            if (!_socket.IsRunning)
+                await _socket.Start();
+            if (StompState == StompConnectionState.Open)
+                return;
+            var connectMessage = new StompMessage(StompCommand.Connect, _connectingHeaders);
+            await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
+            StompState = StompConnectionState.Open;
         }
+
         public async Task SendAsync(object body, string destination, IDictionary<string, string> headers)
         {
             if (StompState != StompConnectionState.Open)
@@ -141,13 +122,11 @@ namespace Netina.Stomp.Client
 
         public async Task DisconnectAsync()
         {
-
             var connectMessage = new StompMessage(StompCommand.Disconnect);
             await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
             StompState = StompConnectionState.Closed;
             _socket.Dispose();
             _subscribers.Clear();
-
         }
 
         public void Dispose()
