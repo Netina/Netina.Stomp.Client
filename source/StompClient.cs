@@ -120,6 +120,16 @@ namespace Netina.Stomp.Client
             _subscribers.Add(topic, sub);
         }
 
+        public async Task AckAsync(string id, string transaction = null)
+        {
+            await Acknowledge(true, id, transaction);
+        }
+
+        public async Task NackAsync(string id, string transaction = null)
+        {
+            await Acknowledge(false, id, transaction);
+        }
+
         public async Task DisconnectAsync()
         {
             var connectMessage = new StompMessage(StompCommand.Disconnect);
@@ -134,6 +144,21 @@ namespace Netina.Stomp.Client
             StompState = StompConnectionState.Closed;
             ((IDisposable)_socket).Dispose();
             _subscribers.Clear();
+        }
+
+        private async Task Acknowledge(bool isPositive, string id, string transaction = null)
+        {
+            if (StompState != StompConnectionState.Open)
+                await Reconnect();
+
+            var headers = new Dictionary<string, string>()
+            {
+                { "id", id }
+            };
+            if (string.IsNullOrEmpty(transaction))
+                headers.Add("transaction", transaction);
+            var connectMessage = new StompMessage(isPositive ? StompCommand.Ack : StompCommand.Nack, headers);
+            await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
         }
 
         private void HandleMessage(ResponseMessage messageEventArgs)

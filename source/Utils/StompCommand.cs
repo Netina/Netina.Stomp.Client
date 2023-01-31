@@ -8,6 +8,8 @@
         public const string Subscribe = "SUBSCRIBE";
         public const string Unsubscribe = "UNSUBSCRIBE";
         public const string Send = "SEND";
+        public const string Ack = "ACK";
+        public const string Nack = "NACK";
 
         //Server Response
         public const string Connected = "CONNECTED";

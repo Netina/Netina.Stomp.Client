@@ -19,6 +19,8 @@ namespace Netina.Stomp.Client.Interfaces
         Task ConnectAsync(IDictionary<string, string> headers);
         Task SendAsync(object body, string destination, IDictionary<string, string> headers);
         Task SubscribeAsync<T>(string topic, IDictionary<string, string> headers, EventHandler<T> handler);
+        Task AckAsync(string id, string transaction = null);
+        Task NackAsync(string id, string transaction = null);
         Task DisconnectAsync();
         Task Reconnect();
     }
