@@ -29,11 +29,5 @@ namespace Netina.Stomp.Client.Messages
             Body = body;
             Headers = headers;
         }
-
-        public string this[string header]
-        {
-            get => Headers.ContainsKey(header) ? Headers[header] : string.Empty;
-            set => Headers[header] = value;
-        }
     }
 }

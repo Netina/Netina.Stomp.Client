@@ -22,7 +22,7 @@ namespace Netina.Stomp.Client
         public StompConnectionState StompState { get; private set; } = StompConnectionState.Closed;
         private readonly WebsocketClient _socket;
         private readonly StompMessageSerializer _stompSerializer = new StompMessageSerializer();
-        private readonly IDictionary<string, Subscriber> _subscribers = new Dictionary<string, Subscriber>();
+        private readonly IDictionary<string, EventHandler<StompMessage>> _subscribers = new Dictionary<string, EventHandler<StompMessage>>();
         private readonly IDictionary<string, string> _connectingHeaders = new Dictionary<string, string>();
 
         /// <summary>
@@ -35,12 +35,14 @@ namespace Netina.Stomp.Client
         /// <param name="heartBeat">If you set heat-beat null is set 0,1000 automatic</param>
         public StompClient(string url, bool reconnectEnable = true, string stompVersion = null, TimeSpan? reconnectTimeOut = null, string heartBeat = null)
         {
-            _socket = new WebsocketClient(new Uri(url));
-            _socket.ReconnectTimeout = reconnectTimeOut;
-            _socket.IsReconnectionEnabled = reconnectEnable;
-            _socket.MessageReceived.Subscribe(HandleMessage);
-            _socket.ErrorReconnectTimeout = TimeSpan.FromSeconds(2);
+            _socket = new WebsocketClient(new Uri(url))
+            {
+                ReconnectTimeout = reconnectTimeOut,
+                IsReconnectionEnabled = reconnectEnable,
+                ErrorReconnectTimeout = TimeSpan.FromSeconds(2)
+            };
 
+            _socket.MessageReceived.Subscribe(HandleMessage);
             _socket.DisconnectionHappened.Subscribe(info =>
             {
                 StompState = StompConnectionState.Closed;
@@ -56,14 +58,9 @@ namespace Netina.Stomp.Client
                 StompState = StompConnectionState.Reconnecting;
                 await Reconnect();
             });
-            if (string.IsNullOrEmpty(stompVersion))
-                _connectingHeaders.Add("accept-version", "1.1,1.0");
-            else
-                _connectingHeaders.Add("accept-version", stompVersion);
-            if (string.IsNullOrEmpty(stompVersion))
-                _connectingHeaders.Add("heart-beat", "0,1000");
-            else
-                _connectingHeaders.Add("heart-beat", heartBeat);
+
+            _connectingHeaders.Add("accept-version", string.IsNullOrEmpty(stompVersion) ? "1.1,1.0" : stompVersion);
+            _connectingHeaders.Add("heart-beat", string.IsNullOrEmpty(stompVersion) ? "0,1000" : heartBeat);
         }
 
         public async Task ConnectAsync(IDictionary<string, string> headers)
@@ -96,18 +93,28 @@ namespace Netina.Stomp.Client
 
         public async Task SendAsync(object body, string destination, IDictionary<string, string> headers)
         {
+            var jsonPayload = JsonConvert.SerializeObject(body);
+            headers.Add("content-type", "application/json;charset=UTF-8");
+            headers.Add("content-length", Encoding.UTF8.GetByteCount(jsonPayload).ToString());
+            await SendAsync(jsonPayload, destination, headers);
+        }
+
+        public async Task SendAsync(string body, string destination, IDictionary<string, string> headers)
+        {
             if (StompState != StompConnectionState.Open)
                 await Reconnect();
 
-            var jsonPayload = JsonConvert.SerializeObject(body);
             headers.Add("destination", destination);
-            headers.Add("content-type", "application/json;charset=UTF-8");
-            headers.Add("content-length", Encoding.UTF8.GetByteCount(jsonPayload).ToString());
-            var connectMessage = new StompMessage(StompCommand.Send, jsonPayload, headers);
+            var connectMessage = new StompMessage(StompCommand.Send, body, headers);
             await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
         }
 
         public async Task SubscribeAsync<T>(string topic, IDictionary<string, string> headers, EventHandler<T> handler)
+        {
+            await SubscribeAsync(topic, headers, (sender, message) => handler(this, JsonConvert.DeserializeObject<T>(message.Body)));
+        }
+
+        public async Task SubscribeAsync(string topic, IDictionary<string, string> headers, EventHandler<StompMessage> handler)
         {
             if (StompState != StompConnectionState.Open)
                 await Reconnect();
@@ -116,8 +123,7 @@ namespace Netina.Stomp.Client
             headers.Add("id", $"sub-{_subscribers.Count}");
             var subscribeMessage = new StompMessage(StompCommand.Subscribe, headers);
             await _socket.SendInstant(_stompSerializer.Serialize(subscribeMessage));
-            var sub = new Subscriber((sender, body) => handler(this, (T)body), typeof(T));
-            _subscribers.Add(topic, sub);
+            _subscribers.Add(topic, handler);
         }
 
         public async Task AckAsync(string id, string transaction = null)
@@ -170,11 +176,7 @@ namespace Netina.Stomp.Client
             if (message.Command == StompCommand.Error)
                 OnError?.Invoke(this, message.Body);
             if (message.Headers.ContainsKey("destination"))
-            {
-                var sub = _subscribers[message.Headers["destination"]];
-                var body = JsonConvert.DeserializeObject(message.Body, sub.BodyType);
-                sub.Handler(this, body);
-            }
+                _subscribers[message.Headers["destination"]](this, message);
         }
     }
 }
