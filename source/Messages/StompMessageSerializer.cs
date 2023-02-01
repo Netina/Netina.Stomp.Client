@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Netina.Stomp.Client.Messages
 {
@@ -23,7 +20,7 @@ namespace Netina.Stomp.Client.Messages
                 }
             }
 
-            buffer.Append("\n");
+            buffer.Append('\n');
             buffer.Append(message.Body);
             buffer.Append('\0');
 
@@ -32,24 +29,25 @@ namespace Netina.Stomp.Client.Messages
 
         public StompMessage Deserialize(string message)
         {
-            var reader = new StringReader(message);
-
-            var command = reader.ReadLine();
-
-            var headers = new Dictionary<string, string>();
-
-            var header = reader.ReadLine();
-            while (!string.IsNullOrEmpty(header))
+            using (var reader = new StringReader(message))
             {
-                var split = header.Split(':');
-                if (split.Length == 2) headers[split[0].Trim()] = split[1].Trim();
-                header = reader.ReadLine() ?? string.Empty;
+                var command = reader.ReadLine();
+
+                var headers = new Dictionary<string, string>();
+
+                var header = reader.ReadLine();
+                while (!string.IsNullOrEmpty(header))
+                {
+                    var split = header.Split(':');
+                    if (split.Length == 2) headers[split[0].Trim()] = split[1].Trim();
+                    header = reader.ReadLine() ?? string.Empty;
+                }
+
+                var body = reader.ReadToEnd();
+                body = body.TrimEnd('\r', '\n', '\0');
+
+                return new StompMessage(command, body, headers);
             }
-
-            var body = reader.ReadToEnd();
-            body = body.TrimEnd('\r', '\n', '\0');
-
-            return new StompMessage(command, body, headers);
         }
     }
 }

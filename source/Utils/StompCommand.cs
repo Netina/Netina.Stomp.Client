@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Netina.Stomp.Client.Utils
+﻿namespace Netina.Stomp.Client.Utils
 {
     public static class StompCommand
     {
@@ -14,6 +8,8 @@ namespace Netina.Stomp.Client.Utils
         public const string Subscribe = "SUBSCRIBE";
         public const string Unsubscribe = "UNSUBSCRIBE";
         public const string Send = "SEND";
+        public const string Ack = "ACK";
+        public const string Nack = "NACK";
 
         //Server Response
         public const string Connected = "CONNECTED";
