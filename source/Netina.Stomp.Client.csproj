@@ -2,21 +2,13 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>AmirHosseinKhademi</Authors>
     <Company>ViraNasirFanavar</Company>
     <PackageProjectUrl>https://github.com/Netina/Netina.Stomp.Client</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Netina/Netina.Stomp.Client</RepositoryUrl>
     <PackageTags>stomp;websocket</PackageTags>
-    <Version>2.0.4.0</Version>
-    <SignAssembly>false</SignAssembly>
-    <PackageId>Netina.Stomp.Client</PackageId>
-    <Product>Netina.Stomp.Client</Product>
-    <AssemblyName>Netina.Stomp.Client</AssemblyName>
-    <RootNamespace>Netina.Stomp.Client</RootNamespace>
+    <Version>2.0.5.0</Version>
     <PackageIcon>NetinaLogo.jpg</PackageIcon>
-    <AssemblyVersion>2.0.4.0</AssemblyVersion>
-    <FileVersion>2.0.4.0</FileVersion>
     <Description>
       .NET nuget package for connecting STOMP server in async way over WebSocket.
       Package documentation and usage - https://github.com/Netina/Netina.Stomp.Client

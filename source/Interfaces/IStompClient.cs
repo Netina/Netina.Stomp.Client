@@ -10,10 +10,11 @@ namespace Netina.Stomp.Client.Interfaces
 {
     public interface IStompClient : IDisposable
     {
-        event EventHandler OnConnect;
-        event EventHandler<DisconnectionInfo> OnClose;
-        event EventHandler<string> OnMessage;
-        event EventHandler<ReconnectionInfo> OnReconnect;
+       event EventHandler<StompMessage> OnConnect;
+       event EventHandler<DisconnectionInfo> OnClose;
+       event EventHandler<StompMessage> OnMessage;
+       event EventHandler<ReconnectionInfo> OnReconnect;
+       event EventHandler<StompMessage> OnError;
 
         StompConnectionState StompState { get; }
 
