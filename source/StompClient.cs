@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.WebSockets;
 using Netina.Stomp.Client.Interfaces;
 using Netina.Stomp.Client.Messages;
 using Netina.Stomp.Client.Utils;
@@ -37,11 +38,15 @@ namespace Netina.Stomp.Client
         /// <param name="heartBeat">Set 0,1000 if nothing specified</param>
         public StompClient(string url, bool reconnectEnable = true, string stompVersion = null, TimeSpan? reconnectTimeOut = null, string heartBeat = null)
         {
-            _socket = new WebsocketClient(new Uri(url))
+            _socket = new WebsocketClient(new Uri(url), () => {
+                var ws = new ClientWebSocket();
+                ws.Options.AddSubProtocol("stomp");
+                return ws;
+            })
             {
                 ReconnectTimeout = reconnectTimeOut,
                 IsReconnectionEnabled = reconnectEnable,
-                ErrorReconnectTimeout = TimeSpan.FromSeconds(2)
+                ErrorReconnectTimeout = TimeSpan.FromSeconds(2.0),
             };
 
             _socket.MessageReceived.Subscribe(HandleMessage);
