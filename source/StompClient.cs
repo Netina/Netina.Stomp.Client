@@ -167,7 +167,7 @@ namespace Netina.Stomp.Client
             {
                 { "id", id }
             };
-            if (string.IsNullOrEmpty(transaction))
+            if (!string.IsNullOrEmpty(transaction))
                 headers.Add("transaction", transaction);
             var connectMessage = new StompMessage(isPositive ? StompCommand.Ack : StompCommand.Nack, headers);
             await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
