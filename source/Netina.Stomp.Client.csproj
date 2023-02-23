@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>AmirHosseinKhademi</Authors>
+    <Authors>AmirHosseinKhademi , JanMarkovich</Authors>
     <Company>ViraNasirFanavar</Company>
     <PackageProjectUrl>https://github.com/Netina/Netina.Stomp.Client</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Netina/Netina.Stomp.Client</RepositoryUrl>
@@ -23,6 +23,9 @@
       STOMP documentation - https://stomp.github.io/
     </Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>Refactor and add new abilities
+Add full STOMP message subscriber 
+Add ACK &amp; NACK Commands</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
