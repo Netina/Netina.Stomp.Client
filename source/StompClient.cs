@@ -186,8 +186,24 @@ namespace Netina.Stomp.Client
                 OnConnect?.Invoke(this, message);
             if (message.Command == StompCommand.Error)
                 OnError?.Invoke(this, message);
-            if (message.Headers.ContainsKey("destination"))
-                _subscribers[message.Headers["destination"]](this, message);
+            if (message.Headers.TryGetValue("destination", out var header))
+            {
+                if (!_subscribers.ContainsKey(header))
+                {
+                    // Workaround for RabbitMQ subscription to a queue created outside the STOMP gateway
+                    // https://www.rabbitmq.com/stomp.html#d
+                    header = "/amq" + header;
+                }
+
+                if (_subscribers.TryGetValue(header, out var subscriber))
+                {
+                    subscriber(this, message);
+                }
+                else
+                {
+                    throw new ApplicationException("The message is received from a queue without a subscription.");
+                }
+            }
         }
     }
 }
