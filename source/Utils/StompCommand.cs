@@ -15,5 +15,8 @@
         public const string Connected = "CONNECTED";
         public const string Message = "MESSAGE";
         public const string Error = "ERROR";
+
+        //Fictional
+        public const string HeartBeat = "HEARTBEAT";
     }
 }
