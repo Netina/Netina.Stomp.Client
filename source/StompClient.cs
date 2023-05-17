@@ -24,7 +24,8 @@ namespace Netina.Stomp.Client
         public string Version { get; private set; }
 
         private readonly WebsocketClient _socket;
-        private readonly StompMessageSerializer _stompSerializer = new StompMessageSerializer();
+        private readonly StompTextMessageSerializer _stompTextSerializer = new StompTextMessageSerializer();
+        private readonly StompBinaryMessageSerializer _binaryMessageSerializer = new StompBinaryMessageSerializer();
         private readonly IDictionary<string, EventHandler<StompMessage>> _subscribers = new Dictionary<string, EventHandler<StompMessage>>();
         private readonly IDictionary<string, string> _connectingHeaders = new Dictionary<string, string>();
 
@@ -87,7 +88,7 @@ namespace Netina.Stomp.Client
                 _connectingHeaders.Add(header);
             }
             var connectMessage = new StompMessage(StompCommand.Connect, _connectingHeaders);
-            await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
+            await _socket.SendInstant(_stompTextSerializer.Serialize(connectMessage));
             StompState = StompConnectionState.Open;
         }
 
@@ -98,7 +99,7 @@ namespace Netina.Stomp.Client
             if (StompState == StompConnectionState.Open)
                 return;
             var connectMessage = new StompMessage(StompCommand.Connect, _connectingHeaders);
-            await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
+            await _socket.SendInstant(_stompTextSerializer.Serialize(connectMessage));
             StompState = StompConnectionState.Open;
         }
 
@@ -117,12 +118,12 @@ namespace Netina.Stomp.Client
 
             headers.Add("destination", destination);
             var connectMessage = new StompMessage(StompCommand.Send, body, headers);
-            await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
+            await _socket.SendInstant(_stompTextSerializer.Serialize(connectMessage));
         }
 
         public async Task SubscribeAsync<T>(string topic, IDictionary<string, string> headers, EventHandler<T> handler)
         {
-            await SubscribeAsync(topic, headers, (sender, message) => handler(this, JsonConvert.DeserializeObject<T>(message.Body)));
+            await SubscribeAsync(topic, headers, (sender, message) => handler(this, JsonConvert.DeserializeObject<T>(message.TextBody)));
         }
 
         public async Task SubscribeAsync(string topic, IDictionary<string, string> headers, EventHandler<StompMessage> handler)
@@ -133,7 +134,7 @@ namespace Netina.Stomp.Client
             headers.Add("destination", topic);
             headers.Add("id", $"sub-{_subscribers.Count}");
             var subscribeMessage = new StompMessage(StompCommand.Subscribe, headers);
-            await _socket.SendInstant(_stompSerializer.Serialize(subscribeMessage));
+            await _socket.SendInstant(_stompTextSerializer.Serialize(subscribeMessage));
             _subscribers.Add(topic, handler);
         }
 
@@ -150,7 +151,7 @@ namespace Netina.Stomp.Client
         public async Task DisconnectAsync()
         {
             var connectMessage = new StompMessage(StompCommand.Disconnect);
-            await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
+            await _socket.SendInstant(_stompTextSerializer.Serialize(connectMessage));
             StompState = StompConnectionState.Closed;
             _socket.Dispose();
             _subscribers.Clear();
@@ -175,12 +176,21 @@ namespace Netina.Stomp.Client
             if (!string.IsNullOrEmpty(transaction))
                 headers.Add("transaction", transaction);
             var connectMessage = new StompMessage(isPositive ? StompCommand.Ack : StompCommand.Nack, headers);
-            await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
+            await _socket.SendInstant(_stompTextSerializer.Serialize(connectMessage));
         }
 
         private void HandleMessage(ResponseMessage messageEventArgs)
         {
-            var message = _stompSerializer.Deserialize(messageEventArgs.Text);
+            StompMessage message = null;
+            if (messageEventArgs.MessageType == WebSocketMessageType.Text)
+            {
+                message = _stompTextSerializer.Deserialize(messageEventArgs.Text);
+            }
+            else
+            {
+                message = _binaryMessageSerializer.Deserialize(messageEventArgs.Binary);
+            }
+
             OnMessage?.Invoke(this, message);
             if (message.Command == StompCommand.Connected)
                 OnConnect?.Invoke(this, message);
@@ -198,10 +208,6 @@ namespace Netina.Stomp.Client
                 if (_subscribers.TryGetValue(header, out var subscriber))
                 {
                     subscriber(this, message);
-                }
-                else
-                {
-                    throw new ApplicationException("The message is received from a queue without a subscription.");
                 }
             }
         }
