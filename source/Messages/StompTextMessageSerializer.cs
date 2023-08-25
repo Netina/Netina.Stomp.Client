@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Netina.Stomp.Client.Messages
 {
-    public class StompMessageSerializer
+    public class StompTextMessageSerializer
     {
         public string Serialize(StompMessage message)
         {
@@ -21,7 +21,7 @@ namespace Netina.Stomp.Client.Messages
             }
 
             buffer.Append('\n');
-            buffer.Append(message.Body);
+            buffer.Append(message.TextBody);
             buffer.Append('\0');
 
             return buffer.ToString();

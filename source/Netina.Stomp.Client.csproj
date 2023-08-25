@@ -22,8 +22,8 @@ Add ACK &amp; NACK Commands</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Websocket.Client" Version="4.4.43" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Websocket.Client" Version="4.6.1" />
   </ItemGroup>
 
   <ItemGroup>

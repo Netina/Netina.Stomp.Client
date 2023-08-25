@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.WebSockets;
@@ -24,7 +26,8 @@ namespace Netina.Stomp.Client
         public string Version { get; private set; }
 
         private readonly WebsocketClient _socket;
-        private readonly StompMessageSerializer _stompSerializer = new StompMessageSerializer();
+        private readonly StompTextMessageSerializer _stompTextSerializer = new StompTextMessageSerializer();
+        private readonly StompBinaryMessageSerializer _binaryMessageSerializer = new StompBinaryMessageSerializer();
         private readonly IDictionary<string, EventHandler<StompMessage>> _subscribers = new Dictionary<string, EventHandler<StompMessage>>();
         private readonly IDictionary<string, string> _connectingHeaders = new Dictionary<string, string>();
 
@@ -36,11 +39,17 @@ namespace Netina.Stomp.Client
         /// <param name="stompVersion">Add stomp version in header for connecting, set "1.0,1.1,1.2" if nothing specified</param>
         /// <param name="reconnectTimeOut">Time range in ms, how long to wait before reconnecting if last reconnection failed. Set null to disable this feature</param>
         /// <param name="heartBeat">Set 0,1000 if nothing specified</param>
-        public StompClient(string url, bool reconnectEnable = true, string stompVersion = null, TimeSpan? reconnectTimeOut = null, string heartBeat = null)
+        public StompClient(string url, bool reconnectEnable = true, string stompVersion = null, TimeSpan? reconnectTimeOut = null, string heartBeat = null, IWebProxy proxy = null)
         {
             _socket = new WebsocketClient(new Uri(url), () => {
                 var ws = new ClientWebSocket();
                 ws.Options.AddSubProtocol("stomp");
+
+                if (proxy != null)
+                {
+                    ws.Options.Proxy = proxy;
+                }
+
                 return ws;
             })
             {
@@ -65,12 +74,12 @@ namespace Netina.Stomp.Client
                 await Reconnect();
             });
 
-            _connectingHeaders.Add("accept-version", string.IsNullOrEmpty(stompVersion) ? "1.0,1.1,1.2" : stompVersion);
-            _connectingHeaders.Add("heart-beat", string.IsNullOrEmpty(heartBeat) ? "0,1000" : heartBeat);
+            _connectingHeaders.Add(StompHeader.AcceptVersion, string.IsNullOrEmpty(stompVersion) ? "1.0,1.1,1.2" : stompVersion);
+            _connectingHeaders.Add(StompHeader.Heartbeat, string.IsNullOrEmpty(heartBeat) ? "0,1000" : heartBeat);
 
             OnConnect += (sender, message) =>
             {
-                Version = message.Headers["version"];
+                Version = message.Headers[StompHeader.Version];
             };
         }
 
@@ -87,7 +96,7 @@ namespace Netina.Stomp.Client
                 _connectingHeaders.Add(header);
             }
             var connectMessage = new StompMessage(StompCommand.Connect, _connectingHeaders);
-            await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
+            await _socket.SendInstant(_stompTextSerializer.Serialize(connectMessage));
             StompState = StompConnectionState.Open;
         }
 
@@ -98,15 +107,15 @@ namespace Netina.Stomp.Client
             if (StompState == StompConnectionState.Open)
                 return;
             var connectMessage = new StompMessage(StompCommand.Connect, _connectingHeaders);
-            await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
+            await _socket.SendInstant(_stompTextSerializer.Serialize(connectMessage));
             StompState = StompConnectionState.Open;
         }
 
         public async Task SendAsync(object body, string destination, IDictionary<string, string> headers)
         {
             var jsonPayload = JsonConvert.SerializeObject(body);
-            headers.Add("content-type", "application/json;charset=UTF-8");
-            headers.Add("content-length", Encoding.UTF8.GetByteCount(jsonPayload).ToString());
+            headers.Add(StompHeader.ContentType, "application/json;charset=UTF-8");
+            headers.Add(StompHeader.ContentLength, Encoding.UTF8.GetByteCount(jsonPayload).ToString());
             await SendAsync(jsonPayload, destination, headers);
         }
 
@@ -115,14 +124,14 @@ namespace Netina.Stomp.Client
             if (StompState != StompConnectionState.Open)
                 await Reconnect();
 
-            headers.Add("destination", destination);
+            headers.Add(StompHeader.Destination, destination);
             var connectMessage = new StompMessage(StompCommand.Send, body, headers);
-            await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
+            await _socket.SendInstant(_stompTextSerializer.Serialize(connectMessage));
         }
 
         public async Task SubscribeAsync<T>(string topic, IDictionary<string, string> headers, EventHandler<T> handler)
         {
-            await SubscribeAsync(topic, headers, (sender, message) => handler(this, JsonConvert.DeserializeObject<T>(message.Body)));
+            await SubscribeAsync(topic, headers, (sender, message) => handler(this, JsonConvert.DeserializeObject<T>(message.TextBody)));
         }
 
         public async Task SubscribeAsync(string topic, IDictionary<string, string> headers, EventHandler<StompMessage> handler)
@@ -130,10 +139,10 @@ namespace Netina.Stomp.Client
             if (StompState != StompConnectionState.Open)
                 await Reconnect();
 
-            headers.Add("destination", topic);
-            headers.Add("id", $"sub-{_subscribers.Count}");
+            headers.Add(StompHeader.Destination, topic);
+            headers.Add(StompHeader.Id, $"sub-{_subscribers.Count}");
             var subscribeMessage = new StompMessage(StompCommand.Subscribe, headers);
-            await _socket.SendInstant(_stompSerializer.Serialize(subscribeMessage));
+            await _socket.SendInstant(_stompTextSerializer.Serialize(subscribeMessage));
             _subscribers.Add(topic, handler);
         }
 
@@ -150,7 +159,7 @@ namespace Netina.Stomp.Client
         public async Task DisconnectAsync()
         {
             var connectMessage = new StompMessage(StompCommand.Disconnect);
-            await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
+            await _socket.SendInstant(_stompTextSerializer.Serialize(connectMessage));
             StompState = StompConnectionState.Closed;
             _socket.Dispose();
             _subscribers.Clear();
@@ -170,24 +179,52 @@ namespace Netina.Stomp.Client
 
             var headers = new Dictionary<string, string>()
             {
-                { "id", id }
+                { StompHeader.Id, id }
             };
             if (!string.IsNullOrEmpty(transaction))
-                headers.Add("transaction", transaction);
+                headers.Add(StompHeader.Transaction, transaction);
             var connectMessage = new StompMessage(isPositive ? StompCommand.Ack : StompCommand.Nack, headers);
-            await _socket.SendInstant(_stompSerializer.Serialize(connectMessage));
+            await _socket.SendInstant(_stompTextSerializer.Serialize(connectMessage));
         }
 
         private void HandleMessage(ResponseMessage messageEventArgs)
         {
-            var message = _stompSerializer.Deserialize(messageEventArgs.Text);
+            StompMessage message = null;
+            if (messageEventArgs.MessageType == WebSocketMessageType.Text)
+            {
+                message = _stompTextSerializer.Deserialize(messageEventArgs.Text);
+            }
+            else
+            {
+                if (messageEventArgs.Binary.Length > 1)
+                {
+                    message = _binaryMessageSerializer.Deserialize(messageEventArgs.Binary);
+                }
+                else
+                {
+                    message = new StompMessage(StompCommand.HeartBeat);
+                }
+            }
+
             OnMessage?.Invoke(this, message);
             if (message.Command == StompCommand.Connected)
                 OnConnect?.Invoke(this, message);
             if (message.Command == StompCommand.Error)
                 OnError?.Invoke(this, message);
-            if (message.Headers.ContainsKey("destination"))
-                _subscribers[message.Headers["destination"]](this, message);
+            if (message.Headers.TryGetValue(StompHeader.Destination, out var header))
+            {
+                if (!_subscribers.ContainsKey(header))
+                {
+                    // Workaround for RabbitMQ subscription to a queue created outside the STOMP gateway
+                    // https://www.rabbitmq.com/stomp.html#d
+                    header = "/amq" + header;
+                }
+
+                if (_subscribers.TryGetValue(header, out var subscriber))
+                {
+                    subscriber(this, message);
+                }
+            }
         }
     }
 }
